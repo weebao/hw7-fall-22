@@ -8,5 +8,4 @@ import { fetchUniversityWeather, fetchUMassWeather, fetchUCalWeather } from "./u
 import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 
 //playing around
-console.log(writeToJSONFile(1, [44,4,4,4,44]))
-console.log("random")
+fetchCurrentWeather(40, 43).then(console.log, console.log)
