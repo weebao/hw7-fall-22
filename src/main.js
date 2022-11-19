@@ -9,3 +9,4 @@ import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 
 //playing around
 console.log(writeToJSONFile(1, [44,4,4,4,44]))
+console.log("random")
