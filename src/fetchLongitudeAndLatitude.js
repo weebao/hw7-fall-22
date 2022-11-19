@@ -5,7 +5,7 @@ export function fetchLongitudeAndLatitude(query) {
   const searchURL = new URL("https://geocode.maps.co/search")
   searchURL.searchParams.append("q", query)
   
-  // Fetch data, then 
+  // Fetch data, then get lon and lat, return error if length is 0
   return fetch(searchURL.toString())
           .then(response => response.json())
           .then(json => json.length === 0 ? new Error("No results found for query.")
