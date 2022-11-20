@@ -11,3 +11,4 @@ import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 // fetchUniversityWeather("california").then(x => console.log(x), x => console.log("Rejected: " + x))
 // fetchUCalWeather().then(x => console.log(x), x => console.log("Rejected: " + x))
 // fetchUniversities("fdafasdfsdf").then(x => console.log("Fulfilled: " + x), x => console.log("Rejected: " + x))
+fetchUniversityWeather("arizona").then(console.log).catch(x => console.log(`Rejected: ${x}`))
