@@ -1,11 +1,13 @@
 import fetch from "node-fetch"; // Third-party fetching library, fetch fully supported in Node.js 18+
 import path from "node:path"; // Node.js standard library for resolving arbitrary paths (like those in a url)
+import promptSync from "prompt-sync";
 
 import { fetchLongitudeAndLatitude } from "./fetchLongitudeAndLatitude.js"
 import { fetchCurrentWeather } from "./fetchCurrentWeather.js"
 import { fetchUniversities } from "./fetchUniversities.js"
 import { fetchUniversityWeather, fetchUMassWeather, fetchUCalWeather } from "./universityWeather.js"
 import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
+const prompt = promptSync()
 
 const writeToJSON = (data) => {
   const input = prompt('Do you want to write this into a JSON File? (If yes, type Y): ')
@@ -33,16 +35,17 @@ const useFunction = (f, lonlat) => {
   }
 }
 
-while (true) {
-  const input = prompt(`Please choose which function you want to use:\n
-                        1 - fetchLongitudeAndLatitude
-                        2 - fetchCurrentWeather
-                        3 - fetchUniversities
-                        4 - fetchUniversityWeather
-                        5 - fetchUMassWeather  
-                        6 - fetchUCalWeather
-                        7 - exit`)
-  if (input === '7') break;
+
+  const input = prompt(`Please choose which function you want to use:
+  1 - fetchLongitudeAndLatitude
+  2 - fetchCurrentWeather
+  3 - fetchUniversities
+  4 - fetchUniversityWeather
+  5 - fetchUMassWeather  
+  6 - fetchUCalWeather
+  7 - exit
+  `)
+  
   if (input === '1') {
     useFunction(x => fetchLongitudeAndLatitude(x), false)
   }
@@ -61,7 +64,4 @@ while (true) {
   else if (input === '6') {
     useFunction(x => fetchUCalWeather(x), false)
   }
-  else {
-    continue;
-  }
-}
+
