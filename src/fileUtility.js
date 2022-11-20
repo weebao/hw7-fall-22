@@ -2,10 +2,10 @@ import { readFile, writeFile } from "node:fs/promises";
 
 export function writeToJSONFile(path, data) {
   // TODO
-  return writeFile(path, JSON.stringify(data, null, 1), { encoding })
+  return writeFile(path, JSON.stringify(data, null, 1))
 }
 
 export function readFromJSONFile(path) {
   // TODO
-  return readFile(path, { encoding }).then(str => JSON.parse(str))
+  return readFile(path).then(str => JSON.parse(str))
 }

@@ -7,8 +7,61 @@ import { fetchUniversities } from "./fetchUniversities.js"
 import { fetchUniversityWeather, fetchUMassWeather, fetchUCalWeather } from "./universityWeather.js"
 import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 
-//playing around
-// fetchUniversityWeather("california").then(x => console.log(x), x => console.log("Rejected: " + x))
-// fetchUCalWeather().then(x => console.log(x), x => console.log("Rejected: " + x))
-// fetchUniversities("fdafasdfsdf").then(x => console.log("Fulfilled: " + x), x => console.log("Rejected: " + x))
-fetchUniversityWeather("arizona").then(console.log).catch(x => console.log(`Rejected: ${x}`))
+const writeToJSON = (data) => {
+  const input = prompt('Do you want to write this into a JSON File? (If yes, type Y): ')
+  if (input.toLowerCase() === 'y') {
+    const path = prompt('Please type the name of the file: ')
+    writeToJSONFile(`${path}.json`, data)
+  }
+}
+
+const useFunction = (f, lonlat) => {
+  if (lonlat) {
+    const lon = prompt('Please input longitude: ') 
+    const lat = prompt('Please input latitude: ') 
+    f(lon, lat).then(x => {
+      console.log(x)
+      writeToJSON(x)
+    })
+  }
+  else {
+    const q = prompt('Please input query: ')
+    f(q).then(x => {
+      console.log(x)
+      writeToJSON(x)
+    })
+  }
+}
+
+while (true) {
+  const input = prompt(`Please choose which function you want to use:\n
+                        1 - fetchLongitudeAndLatitude
+                        2 - fetchCurrentWeather
+                        3 - fetchUniversities
+                        4 - fetchUniversityWeather
+                        5 - fetchUMassWeather  
+                        6 - fetchUCalWeather
+                        7 - exit`)
+  if (input === '7') break;
+  if (input === '1') {
+    useFunction(x => fetchLongitudeAndLatitude(x), false)
+  }
+  else if (input === '2') {
+    useFunction(x => fetchCurrentWeather(x), true)
+  }
+  else if (input === '3') {
+    useFunction(x => fetchUniversities(x), false)
+  }
+  else if (input === '4') {
+    useFunction(x => fetchUniversityWeather(x), false)
+  }
+  else if (input === '5') {
+    useFunction(x => fetchUMassWeather(x), false)
+  }
+  else if (input === '6') {
+    useFunction(x => fetchUCalWeather(x), false)
+  }
+  else {
+    continue;
+  }
+}
