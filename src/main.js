@@ -8,5 +8,6 @@ import { fetchUniversityWeather, fetchUMassWeather, fetchUCalWeather } from "./u
 import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 
 //playing around
-fetchLongitudeAndLatitude("boston").then(console.log, console.log)
-fetchUniversities("harvard").then(console.log, console.log)
+// fetchUniversityWeather("california").then(x => console.log(x), x => console.log("Rejected: " + x))
+// fetchUCalWeather().then(x => console.log(x), x => console.log("Rejected: " + x))
+// fetchUniversities("fdafasdfsdf").then(x => console.log("Fulfilled: " + x), x => console.log("Rejected: " + x))
