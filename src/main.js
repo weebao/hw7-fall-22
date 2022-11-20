@@ -8,5 +8,6 @@ import { fetchUniversityWeather, fetchUMassWeather, fetchUCalWeather } from "./u
 import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 
 //playing around
-console.log(writeToJSONFile(1, [44,4,4,4,44]))
-console.log("random")
+fetchLongitudeAndLatitude("boston").then(console.log, console.log)
+fetchCurrentWeather(50,50).then(console.log, console.log)
+fetchUniversities("california").then(console.log, console.log)
