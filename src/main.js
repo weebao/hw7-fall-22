@@ -9,5 +9,4 @@ import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js"
 
 //playing around
 fetchLongitudeAndLatitude("boston").then(console.log, console.log)
-fetchCurrentWeather(50,5432430).then(console.log, console.log)
-fetchUniversities("california").then(console.log, console.log)
+fetchUniversities("harvard").then(console.log, console.log)
