@@ -25,6 +25,7 @@ const useFunction = (f, lonlat) => {
       console.log(x)
       writeToJSON(x)
     })
+    .catch(x => console.log(`Your input resulted in an error (${x})`))
   }
   else {
     const q = prompt('Please input query: ')
@@ -32,36 +33,36 @@ const useFunction = (f, lonlat) => {
       console.log(x)
       writeToJSON(x)
     })
+        .catch(x => console.log(`Your input resulted in an error (${x})`))
   }
 }
 
+console.log(`Please choose which function you want to use:
+1 - fetchLongitudeAndLatitude
+2 - fetchCurrentWeather
+3 - fetchUniversities
+4 - fetchUniversityWeather
+5 - fetchUMassWeather  
+6 - fetchUCalWeather
+7 - exit`)
 
-  console.log(`Please choose which function you want to use:
-  1 - fetchLongitudeAndLatitude
-  2 - fetchCurrentWeather
-  3 - fetchUniversities
-  4 - fetchUniversityWeather
-  5 - fetchUMassWeather  
-  6 - fetchUCalWeather
-  7 - exit`)
+let input = prompt("Your input: ")
 
-  let input = prompt("Your input: ")
-
-  if (input === '1') {
-    useFunction(x => fetchLongitudeAndLatitude(x), false)
-  }
-  else if (input === '2') {
-    useFunction(x => fetchCurrentWeather(x), true)
-  }
-  else if (input === '3') {
-    useFunction(x => fetchUniversities(x), false)
-  }
-  else if (input === '4') {
-    useFunction(x => fetchUniversityWeather(x), false)
-  }
-  else if (input === '5') {
-    useFunction(x => fetchUMassWeather(x), false)
-  }
-  else if (input === '6') {
-    useFunction(x => fetchUCalWeather(x), false)
-  }
+if (input === '1') {
+  useFunction(x => fetchLongitudeAndLatitude(x), false)
+}
+else if (input === '2') {
+  useFunction(x => fetchCurrentWeather(x), true)
+}
+else if (input === '3') {
+  useFunction(x => fetchUniversities(x), false)
+}
+else if (input === '4') {
+  useFunction(x => fetchUniversityWeather(x), false)
+}
+else if (input === '5') {
+  useFunction(x => fetchUMassWeather(x), false)
+}
+else if (input === '6') {
+  useFunction(x => fetchUCalWeather(x), false)
+}
