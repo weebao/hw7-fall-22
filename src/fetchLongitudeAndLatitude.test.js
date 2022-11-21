@@ -14,3 +14,31 @@ test("fetchLongitudeAndLatitude follows type specification", () => {
     assert(Object.keys(result).length === 2); // Assert there are only two keys in the object
   });
 });
+
+test("fetchLongitudeAndLatitude rejects correctly with empty query", () => {
+  const promise = fetchLongitudeAndLatitude(
+    ""
+  );
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then((result) => {
+    assert(false);
+  },
+  (reason) => {
+    assert(reason instanceof Error);
+  });
+});
+
+test("fetchLongitudeAndLatitude rejects correctly with weird query", () => {
+  const promise = fetchLongitudeAndLatitude(
+    "Something Random Here That Doesn't Exist"
+  );
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then((result) => {
+    assert(false);
+  },
+  (reason) => {
+    assert(reason instanceof Error);
+  });
+});
