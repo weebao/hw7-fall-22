@@ -16,17 +16,17 @@ test("fetchLongitudeAndLatitude follows type specification", () => {
 });
 
 test("fetchLongitudeAndLatitude rejects correctly with empty query", () => {
-  const promise = fetchLongitudeAndLatitude(
-    ""
-  );
+  const promise = fetchLongitudeAndLatitude("");
   assert(typeof promise === "object" && typeof promise.then === "function");
 
-  return promise.then((result) => {
-    assert(false);
-  },
-  (reason) => {
-    assert(reason instanceof Error);
-  });
+  return promise.then(
+    (result) => {
+      assert(false);
+    },
+    (reason) => {
+      assert(reason instanceof Error);
+    }
+  );
 });
 
 test("fetchLongitudeAndLatitude rejects correctly with weird query", () => {
@@ -35,10 +35,12 @@ test("fetchLongitudeAndLatitude rejects correctly with weird query", () => {
   );
   assert(typeof promise === "object" && typeof promise.then === "function");
 
-  return promise.then((result) => {
-    assert(false);
-  },
-  (reason) => {
-    assert(reason instanceof Error);
-  });
+  return promise.then(
+    (result) => {
+      assert(false);
+    },
+    (reason) => {
+      assert(reason instanceof Error);
+    }
+  );
 });

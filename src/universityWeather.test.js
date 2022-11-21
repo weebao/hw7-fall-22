@@ -1,5 +1,9 @@
 import assert from "node:assert";
-import { fetchUniversityWeather, fetchUCalWeather, fetchUMassWeather } from "./universityWeather.js";
+import {
+  fetchUniversityWeather,
+  fetchUCalWeather,
+  fetchUMassWeather,
+} from "./universityWeather.js";
 
 test("fetchUCalWeather follows type specification", () => {
   const promise = fetchUCalWeather();
@@ -24,17 +28,17 @@ test("fetchUMassWeather follows type specification", () => {
 });
 
 test("fetchUniversityWeather rejects correctly with empty query", () => {
-  const promise = fetchUniversityWeather(
-    ""
-  );
+  const promise = fetchUniversityWeather("");
   assert(typeof promise === "object" && typeof promise.then === "function");
 
-  return promise.then((result) => {
-    assert(false);
-  },
-  (reason) => {
-    assert(reason instanceof Error);
-  });
+  return promise.then(
+    (result) => {
+      assert(false);
+    },
+    (reason) => {
+      assert(reason instanceof Error);
+    }
+  );
 });
 
 test("fetchUniversityWeather rejects correctly with weird query", () => {
@@ -43,11 +47,12 @@ test("fetchUniversityWeather rejects correctly with weird query", () => {
   );
   assert(typeof promise === "object" && typeof promise.then === "function");
 
-  return promise.then((result) => {
-    assert(false);
-  },
-  (reason) => {
-    assert(reason instanceof Error);
-  });
+  return promise.then(
+    (result) => {
+      assert(false);
+    },
+    (reason) => {
+      assert(reason instanceof Error);
+    }
+  );
 });
-
