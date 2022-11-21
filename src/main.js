@@ -36,7 +36,7 @@ const useFunction = (f, lonlat) => {
 }
 
 
-  const input = prompt(`Please choose which function you want to use:
+  console.log(`Please choose which function you want to use:
   1 - fetchLongitudeAndLatitude
   2 - fetchCurrentWeather
   3 - fetchUniversities
@@ -45,7 +45,9 @@ const useFunction = (f, lonlat) => {
   6 - fetchUCalWeather
   7 - exit
   `)
-  
+
+  let input = prompt()
+
   if (input === '1') {
     useFunction(x => fetchLongitudeAndLatitude(x), false)
   }
@@ -64,4 +66,3 @@ const useFunction = (f, lonlat) => {
   else if (input === '6') {
     useFunction(x => fetchUCalWeather(x), false)
   }
-

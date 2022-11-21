@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 export function fetchLongitudeAndLatitude(query) {
   // Initialize link and append query to the link
-  const searchURL = new URL("https://geocode.maps.co/search")
+  const searchURL = new URL("https://geocode-cache.herokuapp.com/search")
   searchURL.searchParams.append("q", query)
   
   // Fetch data, then get lon and lat, return error if length is 0
