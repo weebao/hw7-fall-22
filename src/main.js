@@ -43,10 +43,9 @@ const useFunction = (f, lonlat) => {
   4 - fetchUniversityWeather
   5 - fetchUMassWeather  
   6 - fetchUCalWeather
-  7 - exit
-  `)
+  7 - exit`)
 
-  let input = prompt()
+  let input = prompt("Your input: ")
 
   if (input === '1') {
     useFunction(x => fetchLongitudeAndLatitude(x), false)
