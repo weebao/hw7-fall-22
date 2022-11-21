@@ -15,9 +15,8 @@ export function fetchCurrentWeather(longitude, latitude) {
         ? response.json()
         : Promise.reject(new Error(response.statusText))
     )
-    .then((json) =>
-      json.error
-        ? Promise.reject(new Error(json.reason))
-        : { time: json.hourly.time, temperature_2m: json.hourly.temperature_2m }
-    );
+    .then((json) => ({
+      time: json.hourly.time,
+      temperature_2m: json.hourly.temperature_2m,
+    }));
 }
