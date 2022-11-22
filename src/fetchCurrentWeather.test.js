@@ -13,7 +13,9 @@ test("fetchCurrentWeather follows type specification", () => {
       assert(Array.isArray(result.temperature_2m)); // Assert the result as an array temperature_2m field
       assert(result.temperature_2m.every((x) => typeof x === "number")); // Assert each element in that time is a number
     },
-    (reason) => assert(false)
+    (reason) => {
+      assert(false);
+    }
   );
 });
 
@@ -27,7 +29,9 @@ test("fetchCurrentWeather rejects correctly with out of range coordinates", () =
     (result) => {
       assert(false);
     },
-    (reason) => assert(reason instanceof Error)
+    (reason) => {
+      assert(reason instanceof Error);
+    }
   );
 });
 
@@ -42,6 +46,21 @@ test("fetchCurrentWeather rejects correctly with invalid coordinates", () => {
     },
     (reason) => {
       assert(reason instanceof Error);
+    }
+  );
+});
+
+test("fetchCurrentWeather returns the same number of times and temperatures", () => {
+  const promise = fetchCurrentWeather(56, 54);
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  // Assert that the promise will reject with an error
+  return promise.then(
+    (result) => {
+      assert(result.time.length === result.temperature_2m.length);
+    },
+    (reason) => {
+      assert(false);
     }
   );
 });

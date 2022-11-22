@@ -7,12 +7,17 @@ test("fetchLongitudeAndLatitude follows type specification", () => {
   );
   assert(typeof promise === "object" && typeof promise.then === "function");
 
-  return promise.then((result) => {
-    assert(typeof result === "object"); //  Assert the result is an object
-    assert(typeof result.lon === "number"); // Assert that the lon value is a number
-    assert(typeof result.lat === "number"); // Assert that the lat value is a number
-    assert(Object.keys(result).length === 2); // Assert there are only two keys in the object
-  });
+  return promise.then(
+    (result) => {
+      assert(typeof result === "object"); //  Assert the result is an object
+      assert(typeof result.lon === "number"); // Assert that the lon value is a number
+      assert(typeof result.lat === "number"); // Assert that the lat value is a number
+      assert(Object.keys(result).length === 2); // Assert there are only two keys in the object
+    },
+    (reason) => {
+      assert(false);
+    }
+  );
 });
 
 // Extra tests by Bao Dang
@@ -44,6 +49,22 @@ test("fetchLongitudeAndLatitude rejects correctly with weird query", () => {
     },
     (reason) => {
       assert(reason instanceof Error);
+    }
+  );
+});
+
+test("fetchLongitudeAndLatitude returns valid coordinates", () => {
+  const promise = fetchLongitudeAndLatitude("Boston");
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  // Assert that the promise will reject with an error
+  return promise.then(
+    (result) => {
+      assert(result.lon >= -180 && result.lon <= 180);
+      assert(result.lat >= -90 && result.lat <= 90);
+    },
+    (reason) => {
+      assert(false);
     }
   );
 });
