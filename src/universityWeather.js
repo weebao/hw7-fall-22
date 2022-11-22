@@ -3,6 +3,7 @@ import { fetchCurrentWeather } from "./fetchCurrentWeather.js";
 import { fetchUniversities } from "./fetchUniversities.js";
 
 export async function fetchUniversityWeather(query) {
+  // Completed by Bao Dang
   // Getting average of an array of number
   const avg = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
   // Retrying fetch with delay

@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 
 export function fetchUniversities(query) {
+  // Completed by Bao Dang
   // Initialize link and append query to the link
   const searchURL = new URL("https://university-web-api.herokuapp.com/search");
   searchURL.searchParams.append("name", query);

@@ -4,6 +4,7 @@ import {
   fetchUCalWeather,
   fetchUMassWeather,
 } from "./universityWeather.js";
+import { fetchUniversities } from "./fetchUniversities.js";
 
 test("fetchUCalWeather follows type specification", () => {
   const promise = fetchUCalWeather();
@@ -27,6 +28,7 @@ test("fetchUMassWeather follows type specification", () => {
   });
 });
 
+// Extra tests by Bao Dang
 test("fetchUniversityWeather rejects correctly with empty query", () => {
   const promise = fetchUniversityWeather("");
   assert(typeof promise === "object" && typeof promise.then === "function");
@@ -57,4 +59,14 @@ test("fetchUniversityWeather rejects correctly with weird query", () => {
       assert(reason instanceof Error);
     }
   );
+});
+
+test("fetchUniversityWeather returns the same number of universities under normal condition", async () => {
+  const promise = fetchUniversityWeather("texas");
+  const uniPromise = fetchUniversities("texas");
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  const result = await promise;
+  const uniList = await uniPromise;
+  assert(uniList.length === Object.keys(result).length - 1);
 });

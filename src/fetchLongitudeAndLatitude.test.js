@@ -15,6 +15,7 @@ test("fetchLongitudeAndLatitude follows type specification", () => {
   });
 });
 
+// Extra tests by Bao Dang
 test("fetchLongitudeAndLatitude rejects correctly with empty query", () => {
   const promise = fetchLongitudeAndLatitude("");
   assert(typeof promise === "object" && typeof promise.then === "function");

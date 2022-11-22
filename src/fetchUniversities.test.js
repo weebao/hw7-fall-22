@@ -11,6 +11,7 @@ test("fetchUniversities follows type specification", () => {
   });
 });
 
+// Extra tests by Bao Dang
 test("fetchUniversities returns empty array for invalid query", () => {
   const promise = fetchUniversities("Some NonExistent School");
   assert(typeof promise === "object" && typeof promise.then === "function");
@@ -21,6 +22,17 @@ test("fetchUniversities returns empty array for invalid query", () => {
       assert(Array.isArray(result)); // Assert the result in an array
       assert(result.length === 0); // Assert the array's length is 0
     },
-    (reason) => assert(false)
+    (reason) => {
+      assert(false);
+    }
   );
+});
+
+test("fetchUniversities returns array of strings that contains query", () => {
+  const promise = fetchUniversities("Texas");
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then((result) => {
+    assert(result.every((x) => x.toLowerCase().includes("texas")));
+  });
 });

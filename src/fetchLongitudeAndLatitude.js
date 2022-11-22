@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 
 export function fetchLongitudeAndLatitude(query) {
+  // Completed by Bao Dang
   // Initialize link and append query to the link
   const searchURL = new URL("https://geocode-cache.herokuapp.com/search");
   searchURL.searchParams.append("q", query);

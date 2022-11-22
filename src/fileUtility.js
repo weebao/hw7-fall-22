@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 
+// Completed by Bao Dang
 export function writeToJSONFile(path, data) {
   // TODO
   return writeFile(path, JSON.stringify(data, null, 1));
