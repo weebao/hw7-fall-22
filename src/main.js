@@ -46,6 +46,7 @@ const useFunction = (f, lonlat, noQuery) => {
   if (lonlat) {
     let lon = Number(prompt("Please input longitude: "));
     let lat = Number(prompt("Please input latitude: "));
+    console.log("Loading...");
     f(lon, lat)
       .then((x) => {
         console.log(x);
@@ -54,6 +55,7 @@ const useFunction = (f, lonlat, noQuery) => {
       .catch((x) => console.log(`Your input resulted in an error (${x})`));
   } else {
     const q = noQuery ? "" : prompt("Please input query: ");
+    console.log("Loading...");
     f(q)
       .then((x) => {
         console.log(x);
