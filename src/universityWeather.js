@@ -5,7 +5,7 @@ import { fetchUniversities } from "./fetchUniversities.js";
 export async function fetchUniversityWeather(query) {
   // Getting average of an array of number
   const avg = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
-  // Retrying fetch with 0.5s delay
+  // Retrying fetch with delay
   const wait = (timeout) => new Promise((res) => setTimeout(res, timeout));
   const retryFetchFunc = async (input, f, retries, delay) => {
     while (retries > 0) {
