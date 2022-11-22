@@ -21,6 +21,6 @@ export function fetchCurrentWeather(longitude, latitude) {
       .then((json) => ({
         time: json.hourly.time,
         temperature_2m: json.hourly.temperature_2m,
-      }))
+      }), (reason) => new Error(reason))
   );
 }

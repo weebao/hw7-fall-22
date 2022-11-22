@@ -42,7 +42,7 @@ const readJSON = () => {
 };
 
 // Prompting user to use any of the functions 1-6
-const useFunction = (f, lonlat) => {
+const useFunction = (f, lonlat, noQuery) => {
   if (lonlat) {
     const lon = prompt("Please input longitude: ");
     const lat = prompt("Please input latitude: ");
@@ -53,7 +53,7 @@ const useFunction = (f, lonlat) => {
       })
       .catch((x) => console.log(`Your input resulted in an error (${x})`));
   } else {
-    const q = prompt("Please input query: ");
+    const q = noQuery ? "" : prompt("Please input query: ");
     f(q)
       .then((x) => {
         console.log(x);
@@ -77,17 +77,17 @@ console.log(`Please choose which function you want to use:
 let input = prompt("Your input: ");
 
 if (input === "1") {
-  useFunction((x) => fetchLongitudeAndLatitude(x), false);
+  useFunction((x) => fetchLongitudeAndLatitude(x), false, false);
 } else if (input === "2") {
-  useFunction((x) => fetchCurrentWeather(x), true);
+  useFunction((x) => fetchCurrentWeather(x), true, false);
 } else if (input === "3") {
-  useFunction((x) => fetchUniversities(x), false);
+  useFunction((x) => fetchUniversities(x), false, false);
 } else if (input === "4") {
-  useFunction((x) => fetchUniversityWeather(x), false);
+  useFunction((x) => fetchUniversityWeather(x), false, false);
 } else if (input === "5") {
-  useFunction((x) => fetchUMassWeather(x), false);
+  useFunction((x) => fetchUMassWeather(x), false, true);
 } else if (input === "6") {
-  useFunction((x) => fetchUCalWeather(x), false);
+  useFunction((x) => fetchUCalWeather(x), false, true);
 } else if (input === "7") {
   readJSON();
 }
