@@ -9,9 +9,7 @@ export function fetchLongitudeAndLatitude(query) {
   return (
     fetch(searchURL.toString())
       .then((response) =>
-        response.ok
-          ? response.json()
-          : Promise.reject(response.statusText)
+        response.ok ? response.json() : Promise.reject(response.statusText)
       )
       // Reject if length is 0 or json rejects, else return
       .then(
@@ -19,7 +17,7 @@ export function fetchLongitudeAndLatitude(query) {
           json.length === 0
             ? Promise.reject(new Error("No results found for query."))
             : { lon: Number(json[0].lon), lat: Number(json[0].lat) },
-            (reason) => Promise.reject(new Error(reason))
+        (reason) => Promise.reject(new Error(reason))
       )
   );
 }

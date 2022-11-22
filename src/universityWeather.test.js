@@ -30,7 +30,7 @@ test("fetchUMassWeather follows type specification", () => {
 test("fetchUniversityWeather rejects correctly with empty query", () => {
   const promise = fetchUniversityWeather("");
   assert(typeof promise === "object" && typeof promise.then === "function");
-  
+
   // Assert that the promise will reject with an error
   return promise.then(
     (result) => {
@@ -47,7 +47,7 @@ test("fetchUniversityWeather rejects correctly with weird query", () => {
     "Something Random Here That Doesn't Exist"
   );
   assert(typeof promise === "object" && typeof promise.then === "function");
-  
+
   // Assert that the promise will reject with an error
   return promise.then(
     (result) => {

@@ -13,9 +13,7 @@ export function fetchCurrentWeather(longitude, latitude) {
   return (
     fetch(searchURL.toString())
       .then((response) =>
-        response.ok
-          ? response.json()
-          : Promise.reject(response.statusText)
+        response.ok ? response.json() : Promise.reject(response.statusText)
       )
       // Else, return an object of time and temperature arrays
       .then(
