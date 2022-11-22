@@ -13,3 +13,15 @@ test("fetchCurrentWeather follows type specification", () => {
     assert(result.temperature_2m.every((x) => typeof x === "number")); // Assert each element in that time is a number
   });
 });
+
+test("fetchCurrentWeather rejects with invalid coordinates", () => {
+  const promise = fetchCurrentWeather(542354432, 542354325);
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then(
+    (result) => {
+      assert(false);
+    },
+    (reason) => assert(reason instanceof Error)
+  );
+});

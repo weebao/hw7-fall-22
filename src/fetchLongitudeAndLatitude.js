@@ -6,15 +6,18 @@ export function fetchLongitudeAndLatitude(query) {
   searchURL.searchParams.append("q", query);
 
   // Fetch data, then get lon and lat, return error if length is 0
-  return fetch(searchURL.toString())
-    .then((response) =>
-      response.ok
-        ? response.json()
-        : Promise.reject(new Error(response.statusText))
-    )
-    .then((json) =>
-      json.length === 0
-        ? Promise.reject(new Error("No results found for query."))
-        : { lon: Number(json[0].lon), lat: Number(json[0].lat) }
-    );
+  return (
+    fetch(searchURL.toString())
+      .then((response) =>
+        response.ok
+          ? response.json()
+          : Promise.reject(new Error(response.statusText))
+      )
+      // Reject if length is 0, else return
+      .then((json) =>
+        json.length === 0
+          ? Promise.reject(new Error("No results found for query."))
+          : { lon: Number(json[0].lon), lat: Number(json[0].lat) }
+      )
+  );
 }

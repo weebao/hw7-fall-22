@@ -7,13 +7,13 @@ export async function fetchUniversityWeather(query) {
   const avg = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
   // Retrying fetch with 0.5s delay
   const wait = (timeout) => new Promise((res) => setTimeout(res, timeout));
-  const retryFetchFunc = async (input, f, retries) => {
+  const retryFetchFunc = async (input, f, retries, delay) => {
     while (retries > 0) {
       try {
         return await f(input);
       } catch {
         --retries;
-        await wait(500);
+        await wait(delay);
       }
     }
     return Promise.reject(new Error("Failed to fetch after many retries"));
@@ -24,16 +24,17 @@ export async function fetchUniversityWeather(query) {
   if (uniList.length === 0)
     return Promise.reject(new Error("No results found for query."));
 
-  // Get list of coordinates for each school, retry fetching 3 times
+  // Get list of coordinates for each school, retry fetching 3 times with 0.5 s timeout
   const coordList = await Promise.all(
     uniList.map((uni) =>
-      retryFetchFunc(uni, (x) => fetchLongitudeAndLatitude(x), 3).then(
+      retryFetchFunc(uni, (x) => fetchLongitudeAndLatitude(x), 3, 500).then(
         (x) => ({ rej: false, name: uni, val: x }),
         (r) => ({ rej: true, name: uni, val: r })
       )
     )
   ).then((arr) => arr.filter((x) => !x.rej));
 
+  // Get list of average temperatures for individual universities
   const tempList = await Promise.all(
     coordList.map((uni) =>
       fetchCurrentWeather(uni.val.lon, uni.val.lat).then((x) => ({
@@ -43,6 +44,7 @@ export async function fetchUniversityWeather(query) {
     )
   );
 
+  // Convert into object and merge the total averaage
   const indAvgTemp = {};
   tempList.forEach((uni) => (indAvgTemp[uni.name] = uni.temp));
   return { totalAverage: avg(Object.values(indAvgTemp)), ...indAvgTemp };
