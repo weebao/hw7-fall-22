@@ -14,7 +14,7 @@ test("fetchCurrentWeather follows type specification", () => {
   });
 });
 
-test("fetchCurrentWeather rejects with invalid coordinates", () => {
+test("fetchCurrentWeather rejects with out of range coordinates", () => {
   const promise = fetchCurrentWeather(542354432, 542354325);
   assert(typeof promise === "object" && typeof promise.then === "function");
 
@@ -25,3 +25,16 @@ test("fetchCurrentWeather rejects with invalid coordinates", () => {
     (reason) => assert(reason instanceof Error)
   );
 });
+
+test("fetchCurrentWeather rejects with invalid coordinates", () => {
+  const promise = fetchCurrentWeather(true, false);
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then(
+    (result) => {
+      assert(false);
+    },
+    (reason) => assert(reason instanceof Error)
+  );
+});
+

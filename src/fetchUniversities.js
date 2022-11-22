@@ -12,5 +12,8 @@ export function fetchUniversities(query) {
         ? response.json()
         : Promise.reject(new Error(response.statusText))
     )
-    .then((json) => json.map((schools) => schools.name), (reason) => new Error(reason));
+    .then(
+      (json) => json.map((schools) => schools.name),
+      (reason) => Promise.reject(reason instanceof Error ? reason : new Error(reason))
+    );
 }

@@ -14,10 +14,12 @@ export function fetchLongitudeAndLatitude(query) {
           : Promise.reject(new Error(response.statusText))
       )
       // Reject if length is 0 or json rejects, else return
-      .then((json) =>
-        json.length === 0
-          ? Promise.reject(new Error("No results found for query."))
-          : { lon: Number(json[0].lon), lat: Number(json[0].lat) }
-      , (reason) => new Error(reason))
+      .then(
+        (json) =>
+          json.length === 0
+            ? Promise.reject(new Error("No results found for query."))
+            : { lon: Number(json[0].lon), lat: Number(json[0].lat) },
+            (reason) => Promise.reject(reason instanceof Error ? reason : new Error(reason))
+      )
   );
 }
