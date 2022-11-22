@@ -16,7 +16,7 @@ const prompt = promptSync();
 
 // Prompting user to write input into a JSON file
 const writeToJSON = (data) => {
-  const input = prompt(
+  let input = prompt(
     "Do you want to write this into a JSON File? (If yes, type Y): "
   );
   if (input.toLowerCase() === "y") {
@@ -30,7 +30,7 @@ const writeToJSON = (data) => {
 
 // Prompting user to read a JSON file
 const readJSON = () => {
-  const path = prompt("Please type the name of JSON file you want to read: ");
+  let path = prompt("Please type the name of JSON file you want to read: ");
   console.log("Finding file...");
   if (existsSync(`${path}.json`)) {
     console.log("File found.");
@@ -44,8 +44,8 @@ const readJSON = () => {
 // Prompting user to use any of the functions 1-6
 const useFunction = (f, lonlat, noQuery) => {
   if (lonlat) {
-    const lon = prompt("Please input longitude: ");
-    const lat = prompt("Please input latitude: ");
+    let lon = Number(prompt("Please input longitude: "));
+    let lat = Number(prompt("Please input latitude: "));
     f(lon, lat)
       .then((x) => {
         console.log(x);
@@ -79,7 +79,7 @@ let input = prompt("Your input: ");
 if (input === "1") {
   useFunction((x) => fetchLongitudeAndLatitude(x), false, false);
 } else if (input === "2") {
-  useFunction((x) => fetchCurrentWeather(x), true, false);
+  useFunction((x, y) => fetchCurrentWeather(x, y), true, false);
 } else if (input === "3") {
   useFunction((x) => fetchUniversities(x), false, false);
 } else if (input === "4") {

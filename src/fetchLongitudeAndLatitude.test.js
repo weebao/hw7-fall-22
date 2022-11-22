@@ -19,6 +19,7 @@ test("fetchLongitudeAndLatitude rejects correctly with empty query", () => {
   const promise = fetchLongitudeAndLatitude("");
   assert(typeof promise === "object" && typeof promise.then === "function");
 
+  // Assert that the promise will reject with an error
   return promise.then(
     (result) => {
       assert(false);
@@ -34,7 +35,8 @@ test("fetchLongitudeAndLatitude rejects correctly with weird query", () => {
     "Something Random Here That Doesn't Exist"
   );
   assert(typeof promise === "object" && typeof promise.then === "function");
-
+  
+  // Assert that the promise will reject with an error
   return promise.then(
     (result) => {
       assert(false);
