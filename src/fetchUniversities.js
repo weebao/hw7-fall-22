@@ -10,10 +10,10 @@ export function fetchUniversities(query) {
     .then((response) =>
       response.ok
         ? response.json()
-        : Promise.reject(new Error(response.statusText))
+        : Promise.reject(response.statusText)
     )
     .then(
       (json) => json.map((schools) => schools.name),
-      (reason) => Promise.reject(reason instanceof Error ? reason : new Error(reason))
+      (reason) => Promise.reject(new Error(reason))
     );
 }

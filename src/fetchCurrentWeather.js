@@ -15,7 +15,7 @@ export function fetchCurrentWeather(longitude, latitude) {
       .then((response) =>
         response.ok
           ? response.json()
-          : Promise.reject(new Error(response.statusText))
+          : Promise.reject(response.statusText)
       )
       // Else, return an object of time and temperature arrays
       .then(
@@ -23,7 +23,7 @@ export function fetchCurrentWeather(longitude, latitude) {
           time: json.hourly.time,
           temperature_2m: json.hourly.temperature_2m,
         }),
-        (reason) => Promise.reject(reason instanceof Error ? reason : new Error(reason))
+        (reason) => Promise.reject(new Error(reason))
       )
   );
 }
