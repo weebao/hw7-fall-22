@@ -14,7 +14,7 @@ import {
 import { readFromJSONFile, writeToJSONFile } from "./fileUtility.js";
 const prompt = promptSync();
 
-/* Group members: Bao Dang, Vamsi Kontham, Ceilidh Scott*/
+/* Group members: Bao Dang, Vamsi Kontham, Ceilidh Scott */
 // Prompting user to write input into a JSON file
 const writeToJSON = (data) => {
   let input = prompt(

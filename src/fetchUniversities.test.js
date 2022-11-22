@@ -41,3 +41,21 @@ test("fetchUniversities returns array of strings that contains query", () => {
     assert(result.every((x) => x.toLowerCase().includes("texas")));
   });
 });
+
+// Tests by Ceilidh Scott
+test("fetchUniversities returns correct for UMass", () => {
+  const promise = fetchUniversities("University of Massachusetts");
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then(
+    (result) => {
+      assert(result.includes("University of Massachusetts Boston"));
+      assert(result.includes("University of Massachusetts Amherst"));
+      assert(result.includes("University of Massachusetts Dartmouth"));
+      assert(result.includes("University of Massachusetts Lowell"));
+    },
+    (reason) => {
+      assert(false);
+    }
+  );
+});

@@ -80,3 +80,22 @@ test("fetchUniversityWeather returns the same number of universities under norma
   const uniList = await uniPromise;
   assert(uniList.length === Object.keys(result).length - 1);
 });
+
+// Tests by Ceilidh Scott
+test("fetchUMass returns correctly", () => {
+  const promise = fetchUMassWeather();
+  assert(typeof promise === "object" && typeof promise.then === "function");
+
+  return promise.then(
+    (result) => {
+      let uniList = Object.keys(result);
+      assert(uniList.includes("University of Massachusetts Boston"));
+      assert(uniList.includes("University of Massachusetts Amherst"));
+      assert(uniList.includes("University of Massachusetts Dartmouth"));
+      assert(uniList.includes("University of Massachusetts Lowell"));
+    },
+    (reason) => {
+      assert(false);
+    }
+  );
+});
